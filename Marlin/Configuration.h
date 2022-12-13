@@ -20,7 +20,7 @@
 // ***********   CREALITY PRINTERS W/V4.X.X BOARD - F103 CPU   **************
 //===========================================================================
 //------------------------------ V4.2.2 Board -------------------------------
-//#define ENDER3_V422_BOARD
+#define ENDER3_V422_BOARD
 //#define ENDER3_MAX_V422_BOARD
 //#define ENDER3_V2_V422_BOARD
 //#define ENDER5_V422_BOARD
@@ -62,6 +62,12 @@
 // Creality CR-10S Series Filament Sensor
 // Connect the stock sensor to the "J1" port and uncomment the below line to enable the filament sensor.
 //#define CR10S_STOCKFILAMENTSENSOR
+
+#define FILAMENT_RUNOUT_SENSOR                  // Setting this directly with the aim to use the official Creality runout sensor
+#if ENABLED(FILAMENT_RUNOUT_SENSOR)             // Marlin settings from https://marlinfw.org/docs/gcode/M412.html
+  #define FILAMENT_RUNOUT_DISTANCE_MM        30 // (mm) The distance priner will continue printing after a runout is detected
+                                                // Needed to get past my sensor because it will back up into it the wrong way without damage
+#endif
 
 // EZABL Probe Mounts - Uncomment the mount you are using for your EZABL to enable EZABL support in the firmware.
 //#define CR10_OEM
@@ -190,7 +196,7 @@
 // Example EStep Values: TH3D Aluminum Extruder - 95 ESteps, TH3D Tough Extruder - 410 ESteps, BMG Extruder - 415 ESteps
 // When installing a Tough Extruder or E3D Titan or Bondtech that is Geared you likely need to enable the REVERSE_E_MOTOR_DIRECTION option
 //#define CUSTOM_ESTEPS
-#define CUSTOM_ESTEPS_VALUE 410
+#define CUSTOM_ESTEPS_VALUE 95
 //#define REVERSE_E_MOTOR_DIRECTION
 
 // FILAMENT SENSOR UNLOAD SETTINGS -----------------
@@ -215,7 +221,7 @@
 // If you have a hotend and thermistor capable of over 290C you can set the max temp value below.
 // Setting this higher than 290C on a stock or traditional thermistor will damage it. Refer to your thermistor documentation to see what max temp is.
 //#define HIGH_TEMP_THERMISTOR
-#define HIGH_TEMP_THERMISTOR_TEMP 350
+#define HIGH_TEMP_THERMISTOR_TEMP 290
 
 // BED THERMISTOR SETTINGS -------------------------
 
@@ -243,11 +249,11 @@
 //#define FAN_FIX
 
 // Use your own printer name - Uncomment both lines
-//#define CUSTOM_PRINTER_NAME
-//#define USER_PRINTER_NAME "CHANGE ME"
+#define CUSTOM_PRINTER_NAME
+#define USER_PRINTER_NAME "Ender 3 Pro (One)"
 
 // If your printer is homing to the endstops hard uncomment this to change the homing speed/divisor to make it less aggressive.
-//#define SLOWER_HOMING
+#define SLOWER_HOMING
 
 // Axis Direction Settings
 // If you need to reverse the direction of a motor uncomment the below option for that axis.
@@ -283,14 +289,27 @@
 // custom XY offsets. This is provided for convenience and is unsupported with included product support.
 // How to use - measure (home XY then jog using the LCD 1mm at a time) the X and Y distance the nozzle is off
 // the build plate and then put those as NEGATIVE values below, positive values will NOT work (move your endstops to fix a positive offset).
-//#define HOME_ADJUST
-#define X_HOME_LOCATION -10
-#define Y_HOME_LOCATION -10
+#define HOME_ADJUST
+//#define X_HOME_LOCATION -10  //default values
+//#define Y_HOME_LOCATION -10
+//#define X_HOME_LOCATION -8.3 // too far +X and -Y
+//#define Y_HOME_LOCATION -9
+//#define X_HOME_LOCATION -13.9
+//#define Y_HOME_LOCATION -14.7 // wrong way
+//#define X_HOME_LOCATION -2.7
+//#define Y_HOME_LOCATION -9 // a little too far +4.2X -4.3Y
+#define X_HOME_LOCATION -0
+#define Y_HOME_LOCATION -4.7
+
 
 // PID BED TEMPERATURE CONTROL ---------------------
 // If you want PID Bed Temperature control enable the below line. You will need to tune it for your machine.
 // See the PID Bed setup guide here: https://support.th3dstudio.com/helpcenter/p-i-d-bed-calibration-guide/
-//#define ENABLE_PIDBED
+#define ENABLE_PIDBED
+
+// Z PROBE OFFSET WIZARD ---------------------------
+// Marlin has a Z Probe Offset Wizard now. If you want to enable this, uncomment the below line.
+//#define PROBE_OFFSET_WIZARD
 
 // FINE BABYSTEPPING -------------------------------
 // Enabling the below line will set the babystep resolution from 0.025mm to 0.010mm for finer control.
@@ -298,9 +317,9 @@
 
 // LINEAR ADVANCE ----------------------------------
 // See here on how to use Linear Advance: http://marlinfw.org/docs/features/lin_advance.html
-//#define LINEAR_ADVANCE
+#define LINEAR_ADVANCE
 // Change the K Value here or use M900 KX.XX in your starting code (recommended).
-#define LINEAR_ADVANCE_K 0
+#define LINEAR_ADVANCE_K 0.50
 
 // BL TOUCH ----------------------------------------
 // There are 2 ways to connect the BL Touch to the V4.2.X boards - All on the 5 pin header or using 3 pins on the 5 pin header + Z Endstop port
@@ -314,7 +333,7 @@
 // If you want to use manual mesh leveling you can enable the below option. This is for generating a MANUAL mesh WITHOUT a probe.
 // Mesh Bed Leveling Documentation: http://marlinfw.org/docs/gcode/G029-mbl.html 
 // NOTE: If you want to automate the leveling process our EZABL kits do this for you. Check them out here: http://EZABL.TH3DStudio.com
-//#define MANUAL_MESH_LEVELING
+#define MANUAL_MESH_LEVELING
 
 // POWER LOSS RECOVERY -----------------------------
 // Continue after Power-Loss feature will store the current state to the SD Card at the start of each layer
@@ -891,8 +910,8 @@
       #define Y_BED_SIZE 235
       #define Z_MAX_POS 500
     #else
-      #define X_BED_SIZE 235
-      #define Y_BED_SIZE 235
+      #define X_BED_SIZE 220
+      #define Y_BED_SIZE 220
       #define Z_MAX_POS 250
     #endif
   #endif

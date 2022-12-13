@@ -1481,10 +1481,10 @@
 
 #if EITHER(HAS_DISPLAY, DWIN_CREALITY_LCD_ENHANCED)
   // The timeout (in ms) to return to the status screen from sub-menus
-  #define LCD_TIMEOUT_TO_STATUS 30000
+  #define LCD_TIMEOUT_TO_STATUS 20000
 
   #if ENABLED(SHOW_BOOTSCREEN)
-    #define BOOTSCREEN_TIMEOUT 1000      // (ms) Total Duration to display the boot screen(s)
+    #define BOOTSCREEN_TIMEOUT 1500      // (ms) Total Duration to display the boot screen(s)
     #if EITHER(HAS_MARLINUI_U8GLIB, TFT_COLOR_UI)
       #define BOOT_MARLIN_LOGO_SMALL     // Show a smaller Marlin logo on the Boot Screen (saving lots of flash)
     #endif
@@ -2700,7 +2700,7 @@
                                                   // Filament Unload does a Retract, Delay, and Purge first:
   #define FILAMENT_UNLOAD_PURGE_RETRACT       13  // (mm) Unload initial retract length.
   #define FILAMENT_UNLOAD_PURGE_DELAY       2000  // (ms) Delay for the filament to cool after retract.
-  #define FILAMENT_UNLOAD_PURGE_LENGTH         7  // (mm) An unretract is done, then this length is purged.
+  #define FILAMENT_UNLOAD_PURGE_LENGTH         8  // (mm) An unretract is done, then this length is purged.
   #define FILAMENT_UNLOAD_PURGE_FEEDRATE      25  // (mm/s) feedrate to purge before unload
 
   #define PAUSE_PARK_NOZZLE_TIMEOUT          180  // (seconds) Time limit before the nozzle is turned off for safety.

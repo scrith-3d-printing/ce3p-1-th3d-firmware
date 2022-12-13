@@ -250,10 +250,10 @@
 
 // Use your own printer name - Uncomment both lines
 #define CUSTOM_PRINTER_NAME
-#define USER_PRINTER_NAME "Ender 3 Pro (One)"
+#define USER_PRINTER_NAME "Ender 3 Pro (Alonzo)"
 
 // If your printer is homing to the endstops hard uncomment this to change the homing speed/divisor to make it less aggressive.
-#define SLOWER_HOMING
+//#define SLOWER_HOMING
 
 // Axis Direction Settings
 // If you need to reverse the direction of a motor uncomment the below option for that axis.
@@ -319,7 +319,7 @@
 // See here on how to use Linear Advance: http://marlinfw.org/docs/features/lin_advance.html
 #define LINEAR_ADVANCE
 // Change the K Value here or use M900 KX.XX in your starting code (recommended).
-#define LINEAR_ADVANCE_K 0.50
+#define LINEAR_ADVANCE_K 0.70
 
 // BL TOUCH ----------------------------------------
 // There are 2 ways to connect the BL Touch to the V4.2.X boards - All on the 5 pin header or using 3 pins on the 5 pin header + Z Endstop port
@@ -333,7 +333,7 @@
 // If you want to use manual mesh leveling you can enable the below option. This is for generating a MANUAL mesh WITHOUT a probe.
 // Mesh Bed Leveling Documentation: http://marlinfw.org/docs/gcode/G029-mbl.html 
 // NOTE: If you want to automate the leveling process our EZABL kits do this for you. Check them out here: http://EZABL.TH3DStudio.com
-#define MANUAL_MESH_LEVELING
+//#define MANUAL_MESH_LEVELING
 
 // POWER LOSS RECOVERY -----------------------------
 // Continue after Power-Loss feature will store the current state to the SD Card at the start of each layer
